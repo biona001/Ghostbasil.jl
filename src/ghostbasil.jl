@@ -39,7 +39,7 @@ function block_group_ghostbasil(
         (max_n_cds > 0) && (thr > 0) && (min_ratio > 0) || 
         error("Expected m, max_n_lambdas, lambdas_iter, max_n_cds, thr, min_ratio all to be > 0")
 
-    return ghostbasil_jll.block_group_ghostbasil(Ci, Si_scaled, r, lambda_path, 
+    return block_group_ghostbasil(Ci, Si_scaled, r, lambda_path, 
         m, p, max_n_lambdas, lambdas_iter, use_strong_rule, do_early_exit, 
         delta_strong_size, max_strong_size, max_n_cds, thr, min_ratio, n_threads)
 end
