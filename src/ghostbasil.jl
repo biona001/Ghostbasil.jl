@@ -46,4 +46,6 @@ end
 
 export block_group_ghostbasil
 
+datadir(parts...) = joinpath(@__DIR__, "..", "data", parts...)
+
 end
