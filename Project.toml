@@ -1,7 +1,11 @@
-name = "GhostBASIL"
+name = "ghostbasil"
 uuid = "42a9b20f-2d23-465a-b7ed-975dbff4a4d6"
 authors = ["Benjamin Chu <benchu99@hotmail.com> and contributors"]
-version = "1.0.0-DEV"
+version = "0.0.1"
+
+[deps]
+CxxWrap = "1f15a43c-97ca-5a2a-ae31-89f07a497df4"
+ghostbasil_jll = "caeec347-1c5e-53ac-8e86-7f5e1a690164"
 
 [compat]
 julia = "1"
