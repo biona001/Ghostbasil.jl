@@ -1,4 +1,4 @@
-module ghostbasil
+module Ghostbasil
 
 using CxxWrap
 using ghostbasil_jll

@@ -1,4 +1,4 @@
-using ghostbasil
+using Ghostbasil
 using DelimitedFiles
 using Test
 
@@ -12,14 +12,14 @@ using Test
     Si = y'*y
     r = randn(6p)
     lambda_path = [0.1, 0.05, 0.01, 0.001]
-    beta_i = ghostbasil.block_group_ghostbasil(Ci, Si, r, lambda_path, m=m)
+    beta_i = block_group_ghostbasil(Ci, Si, r, lambda_path, m=m)
     @test length(beta_i) == (m+1)*p
 
     # Test correctness with a specific region from Pan-UKBB. 
     # The true answer is obtained from running the ghostbasil R package on
     # the given data. Note these data are based on LD summary statistics, 
     # which can be freely distributed
-    datadir = normpath(ghostbasil.datadir())
+    datadir = normpath(Ghostbasil.datadir())
     C = readdlm(joinpath(datadir, "C.txt"))
     S = readdlm(joinpath(datadir, "S.txt"))
     r = readdlm(joinpath(datadir, "r.txt")) |> vec
