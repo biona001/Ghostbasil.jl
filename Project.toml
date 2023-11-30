@@ -9,6 +9,8 @@ ghostbasil_jll = "caeec347-1c5e-53ac-8e86-7f5e1a690164"
 
 [compat]
 julia = "1"
+CxxWrap = "0.14.2"
+ghostbasil_jll = "0.0.6"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
