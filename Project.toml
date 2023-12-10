@@ -8,13 +8,13 @@ CxxWrap = "1f15a43c-97ca-5a2a-ae31-89f07a497df4"
 ghostbasil_jll = "caeec347-1c5e-53ac-8e86-7f5e1a690164"
 
 [compat]
-julia = "1"
 CxxWrap = "0.14.2"
-ghostbasil_jll = "0.0.6"
+ghostbasil_jll = "0.0.7"
+julia = "1"
 
 [extras]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
 test = ["Test", "DelimitedFiles"]

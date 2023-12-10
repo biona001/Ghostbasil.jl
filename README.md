@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/biona001/GhostBASIL.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/biona001/GhostBASIL.jl/actions/workflows/CI.yml?query=branch%3Amain)
 
-:warning: **This package currently only works on Julia v1.9.0 or v1.9.3** with Linux aarch64 or x86_64. Note Julia version **must** be v1.9.0 or v1.9.3. 
+:warning: **This package currently only works on Julia v1.8.x or 1.9.x** with Linux aarch64 or x86_64. If you need it to work on a different Julia version, please file an issue. 
 
 This is an experimental package that provides a Julia wrapper to the C++ code of [ghostbasil](https://github.com/JamesYang007/ghostbasil) package. Interfacing is accomplished by [CxxWrap.jl](https://github.com/JuliaInterop/CxxWrap.jl). 
 
