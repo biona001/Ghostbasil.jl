@@ -9,7 +9,7 @@ ghostbasil_jll = "caeec347-1c5e-53ac-8e86-7f5e1a690164"
 
 [compat]
 CxxWrap = "0.14.2"
-ghostbasil_jll = "0.0.7"
+ghostbasil_jll = "0.0.8"
 julia = "1"
 
 [extras]
