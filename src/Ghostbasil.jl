@@ -1,5 +1,4 @@
 module Ghostbasil
-
 using CxxWrap
 using ghostbasil_jll
 
@@ -39,9 +38,15 @@ function block_group_ghostbasil(
         (max_n_cds > 0) && (thr > 0) && (min_ratio > 0) || 
         error("Expected m, max_n_lambdas, lambdas_iter, max_n_cds, thr, min_ratio all to be > 0")
 
-    return block_group_ghostbasil(Ci, Si_scaled, r, lambda_path, 
+    # call C++ solver
+    beta_i_ptr = block_group_ghostbasil(Ci, Si_scaled, r, lambda_path, 
         m, p, max_n_lambdas, lambdas_iter, use_strong_rule, do_early_exit, 
         delta_strong_size, max_strong_size, max_n_cds, thr, min_ratio, n_threads)
+
+    # convert to Julia vector, free C++ memory, then return
+    beta_i = copy.(beta_i_ptr)
+    # free_basil_result(beta_i_ptr)
+    return beta_i
 end
 
 export block_group_ghostbasil
