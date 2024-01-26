@@ -2,7 +2,7 @@
 
 julia_version = "1.9.1"
 manifest_format = "2.0"
-project_hash = "0d4c0b3bb0786379c9d716e682b392366bdb1b57"
+project_hash = "cdef470f37053bb3f59a838ebd37a487048fedc5"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"
@@ -69,9 +69,9 @@ uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
 
 [[deps.MacroTools]]
 deps = ["Markdown", "Random"]
-git-tree-sha1 = "9ee1618cbf5240e6d4e0371d6f24065083f60c48"
+git-tree-sha1 = "2fa9ee3e63fd3a4f7a9a4f4744a52f4856de82df"
 uuid = "1914dd2f-81c6-5fcd-8719-6d5c9610ff09"
-version = "0.5.11"
+version = "0.5.13"
 
 [[deps.Markdown]]
 deps = ["Base64"]
@@ -147,17 +147,17 @@ version = "1.2.13+0"
 
 [[deps.ghostbasil_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg", "libcxxwrap_julia_jll"]
-git-tree-sha1 = "d9549e2f5cc1a27205313a0f47a1e6800ae4dc33"
+git-tree-sha1 = "92ace2063a085add08c13d5acb8792cfa15596bf"
 repo-rev = "main"
 repo-url = "https://github.com/biona001/ghostbasil_jll.jl"
 uuid = "caeec347-1c5e-53ac-8e86-7f5e1a690164"
-version = "0.0.11+0"
+version = "0.0.13+0"
 
 [[deps.libcxxwrap_julia_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
-git-tree-sha1 = "d965520992872a533db8c777f9b4addb5d90bc5b"
+git-tree-sha1 = "3d47ce071d272d2cae9d1bc449c261237e9784f7"
 uuid = "3eaa8342-bff7-56a5-9981-c04077f7cee7"
-version = "0.11.1+0"
+version = "0.11.2+0"
 
 [[deps.nghttp2_jll]]
 deps = ["Artifacts", "Libdl"]
