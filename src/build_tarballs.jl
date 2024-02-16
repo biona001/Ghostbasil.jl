@@ -3,11 +3,11 @@
 using BinaryBuilder, Pkg
 
 name = "ghostbasil"
-version = v"0.0.14"
+version = v"0.0.15"
 
 # Collection of sources required to complete build
 sources = [
-    GitSource("https://github.com/biona001/ghostbasil.git", "50aef6a0f7810b2a8a41e6ee36079950fcf54313")
+    GitSource("https://github.com/biona001/ghostbasil.git", "d31c8629b4639b867a1186a33efd47341863ecf7")
 ]
 
 # Bash recipe for building across all platforms
@@ -37,7 +37,7 @@ install_license $WORKSPACE/srcdir/ghostbasil/R/LICENSE.md
 julia_versions = [
     v"1.8.0", v"1.8.1", v"1.8.2", v"1.8.3", v"1.8.4", v"1.8.5",
     v"1.9.0", v"1.9.1", v"1.9.2", v"1.9.3", v"1.9.4", 
-    v"1.10.0"
+    v"1.10.0", v"1.10.1"
 ]
 working_platforms = [ # ghostbasil won't work on windows, and currently fails on mac
     Platform("x86_64", "linux"; libc = "glibc"),
