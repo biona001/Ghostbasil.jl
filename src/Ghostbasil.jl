@@ -31,8 +31,8 @@ function block_group_ghostbasil(
     length(r) == (m+1)*p || error("Expected length(r) == $((m+1)*p)")
     issorted(lambda_path, rev=true) || 
         error("lambda_path should be sorted from largest to smallest")
-    isapprox(Ci, Ci', atol=1e-8) || error("Ci is not symmetric")
-    isapprox(Si_scaled, Si_scaled', atol=1e-8) || 
+    isapprox(Ci, Ci', atol=1e-7) || error("Ci is not symmetric")
+    isapprox(Si_scaled, Si_scaled', atol=1e-7) || 
         error("Si_scaled is not symmetric")
     (m > 0) && (max_n_lambdas > 0) && (lambdas_iter > 0) && 
         (max_n_cds > 0) && (thr > 0) && (min_ratio > 0) || 
