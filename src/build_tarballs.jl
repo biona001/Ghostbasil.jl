@@ -1,9 +1,9 @@
 # Note that this script can accept some limited command-line arguments, run
 # `julia build_tarballs.jl --help` to see a usage message.
-using BinaryBuilder, Pkg
+using BinaryBuilder
 
 name = "ghostbasil"
-version = v"0.0.15"
+version = v"0.0.16"
 
 # Collection of sources required to complete build
 sources = [
@@ -25,8 +25,8 @@ cmake \
     -DCMAKE_BUILD_TYPE=Release \
     ../
 
-make
-make install
+cmake --build . --config Release --parallel ${nproc}
+cmake --install .
 
 # install license
 install_license $WORKSPACE/srcdir/ghostbasil/R/LICENSE.md
@@ -35,16 +35,23 @@ install_license $WORKSPACE/srcdir/ghostbasil/R/LICENSE.md
 # These are the platforms we will build for by default, unless further
 # platforms are passed in on the command line
 julia_versions = [
-    v"1.8.0", v"1.8.1", v"1.8.2", v"1.8.3", v"1.8.4", v"1.8.5",
-    v"1.9.0", v"1.9.1", v"1.9.2", v"1.9.3", v"1.9.4", 
-    v"1.10.0", v"1.10.1"
+    v"1.10.0",
+    v"1.11.1",
+    v"1.12.0",
+    v"1.13.0",
+    v"1.14.0",
 ]
-working_platforms = [ # ghostbasil won't work on windows, and currently fails on mac
-    Platform("x86_64", "linux"; libc = "glibc"),
-    Platform("aarch64", "linux"; libc = "glibc"),
-    Platform("powerpc64le", "linux"; libc = "glibc"),
-    Platform("x86_64", "linux"; libc = "musl"),
-    Platform("aarch64", "linux"; libc = "musl"),
+
+# CxxWrap/libcxxwrap_julia_jll v0.14 only publishes cxx11 Linux
+# artifacts. macOS does not use a cxxstring_abi platform tag.
+working_platforms = [
+    Platform("x86_64", "linux"; libc = "glibc", cxxstring_abi = "cxx11"),
+    Platform("aarch64", "linux"; libc = "glibc", cxxstring_abi = "cxx11"),
+    Platform("powerpc64le", "linux"; libc = "glibc", cxxstring_abi = "cxx11"),
+    Platform("x86_64", "linux"; libc = "musl", cxxstring_abi = "cxx11"),
+    Platform("aarch64", "linux"; libc = "musl", cxxstring_abi = "cxx11"),
+    Platform("x86_64", "macos"),
+    Platform("aarch64", "macos"),
 ]
 
 # expand platforms to specify julia version explicitly
@@ -54,7 +61,6 @@ for p in working_platforms, julia_version in julia_versions
     p["julia_version"] = string(julia_version)
     push!(platforms, deepcopy(p))
 end
-platforms = expand_cxxstring_abis(platforms)
 
 # The products that we will ensure are always built
 products = [
@@ -63,11 +69,12 @@ products = [
 
 # Dependencies that must be installed before this package can be built
 dependencies = [
-    Dependency("libcxxwrap_julia_jll"; compat = "0.11.2"),
+    Dependency("libcxxwrap_julia_jll", v"0.14.10"; compat = "0.14.10"),
     BuildDependency("Eigen_jll"),
     BuildDependency("libjulia_jll")
 ]
 
 # Build the tarballs, and possibly a `build.jl` as well.
 build_tarballs(ARGS, name, version, sources, script, platforms, products, 
-    dependencies; julia_compat="1.9", preferred_gcc_version = v"7.1.0")
+    dependencies; julia_compat="~1.10, ~1.11, ~1.12, ~1.13, ~1.14",
+    preferred_gcc_version = v"11")
