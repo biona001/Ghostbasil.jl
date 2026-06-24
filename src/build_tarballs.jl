@@ -12,7 +12,12 @@ sources = [
 
 # Bash recipe for building across all platforms
 script = raw"""
+# The macOS SDK/toolchain shards can contain AppleDouble resource-fork files
+# named `._*`. CMake may glob those as modules and fail to parse them.
+find /usr/share/cmake -name '._*' -delete || true
+
 cd $WORKSPACE/srcdir
+sed -i 's/find_package(Eigen3 3.3 REQUIRED NO_MODULE)/find_package(Eigen3 REQUIRED NO_MODULE)/' ghostbasil/julia/CMakeLists.txt
 mkdir -p ghostbasil/julia/build
 cd ghostbasil/julia/build
 
@@ -36,10 +41,7 @@ install_license $WORKSPACE/srcdir/ghostbasil/R/LICENSE.md
 # platforms are passed in on the command line
 julia_versions = [
     v"1.10.0",
-    v"1.11.1",
     v"1.12.0",
-    v"1.13.0",
-    v"1.14.0",
 ]
 
 # CxxWrap/libcxxwrap_julia_jll v0.14 only publishes cxx11 Linux
@@ -47,9 +49,6 @@ julia_versions = [
 working_platforms = [
     Platform("x86_64", "linux"; libc = "glibc", cxxstring_abi = "cxx11"),
     Platform("aarch64", "linux"; libc = "glibc", cxxstring_abi = "cxx11"),
-    Platform("powerpc64le", "linux"; libc = "glibc", cxxstring_abi = "cxx11"),
-    Platform("x86_64", "linux"; libc = "musl", cxxstring_abi = "cxx11"),
-    Platform("aarch64", "linux"; libc = "musl", cxxstring_abi = "cxx11"),
     Platform("x86_64", "macos"),
     Platform("aarch64", "macos"),
 ]
@@ -76,5 +75,5 @@ dependencies = [
 
 # Build the tarballs, and possibly a `build.jl` as well.
 build_tarballs(ARGS, name, version, sources, script, platforms, products, 
-    dependencies; julia_compat="~1.10, ~1.11, ~1.12, ~1.13, ~1.14",
+    dependencies; julia_compat="~1.10, ~1.12",
     preferred_gcc_version = v"11")
